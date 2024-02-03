@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Invoice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style type="text/css">
+
+        body{
+            font-family: 'Roboto', sans-serif;
+
+        }
+        .noteP p{margin-top: -13px}
+    </style>
+</head>
+<body>
+<div class="ticket">
+    <div class="LogoImg" style="margin-bottom: 17px">
+        <img src="{{asset('/upload/khazana.png')}}" alt="Logo">
+    </div>
+    <div class="centered noteP"><p>&nbsp;</p> </div>
+
+    <div class="address">
+        <h4>khazana dhaka limited</h4>
+        <p class="centered">
+            House no-08, Road-53, Gulshan-2,Dhaka-1212
+        </p>
+        <p class="centered">
+            Phone: +8801711476379, +09611677286
+        </p>
+        <h3>mushak-6.3</h3>
+        <h5>vat reg no: 003883479-0101</h5>
+    </div>
+    <table class="admin-table">
+        @php
+            $date=explode(' ',$customer->SaleDT);
+            $time=explode(' ',$customer->SaleTime);
+        @endphp
+        <tbody>
+        <tr>
+            <td>{{$customer->InvoiceNo}}</td>
+            <td>{{$date[0]}}</td>
+        </tr>
+        <tr>
+            <td>customer :</td>
+            <td>{{$customer->CustomerName}}</td>
+        </tr>
+        <tr>
+            <td>address :</td>
+            <td>{{$customer->Address}}</td>
+        </tr>
+        <tr>
+            <td>phone :{{$customer->Phone}}</td>
+            <td>table : {{$customer->TableId}}</td>
+        </tr>
+        <tr>
+            <td>served by :Khazana</td>
+            <td>cashier : {{$customer->CashiarId}}</td>
+        </tr>
+        <tr>
+            <td>time : {{$time[1]}}</td>
+            <td>No of guest : {{$customer->NoOfGuest}}</td>
+        </tr>
+        <tr>
+            <td>discount note </td>
+            <td>{{$customer->DiscNote}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    .borderTH{
+        /border: 1px solid #ccc3c3;/
+        padding-bottom: 10px;
+    }
+    .priceWidth{
+        font-weight: normal!important;
+    }
+
+    .LogoImg img{
+        height: 40px;
+    }
+    .vat-width{
+        text-align: right;
+        font-weight: bold;
+        padding-right: 5px;
+        text-transform: capitalize;
+    }
+    .LogoImg{text-align: center;margin-bottom: 5px}
+    td,
+    th,
+    tr,
+    table {
+        /border: 1px solid #ccc3c3;/
+        border-collapse: collapse;
+        vertical-align: middle;
+    }
+    td.description,
+    th.description {
+        width: 75px;
+        max-width: 75px;
+        font-weight: normal!important;
+        text-transform: capitalize;
+    }
+    td.quantity,
+    th.quantity {
+        width: 40px;
+        max-width: 40px;
+        word-break: break-all;
+        font-weight: normal!important;
+        text-transform: capitalize;
+    }
+    td.price,
+    th.price {
+        width: 90px;
+        max-width: 90px;
+        word-break: break-all;
+        font-weight: normal!important;
+        text-transform: capitalize;
+    }
+    .centered {
+        text-align: center;
+        align-content: center;
+    }
+    .centered h4{
+        text-transform: uppercase;
+        margin-bottom: 5px;
+    }
+    .centered h5{
+        text-transform: capitalize;
+        font-size: 12px;
+        margin: 0;
+    }
+    .centered p{
+        font-size: 11px;
+        margin: 7px 0;
+    }
+    .ticket {
+        /*width: 155px;
+        max-width: 155px;*/
+    }
+    img {
+        max-width: inherit;
+        width: inherit;
+    }
+
+    th.font-bolder-th{
+        font-weight: 700 !important;
+    }
+    td.font-bolder-th{
+        font-weight: 700 !important;
+    }
+    p.centered {
+        margin: 0;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .address{
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .address h4{
+        margin: 5px auto;
+        text-transform: capitalize;
+        font-size: 15px;
+    }
+    .address h3{
+        margin: 5px auto;
+        text-transform: uppercase;
+        font-size: 17px;
+    }
+    .address h5{
+        margin: 5px auto;
+        text-transform: capitalize;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .admin-table {
+        width: 100%;
+    }
+    .admin-table td{
+        padding: 3px 0;
+        font-size: 12px;
+        text-transform: capitalize;
+    }
+    .admin-table td:nth-child(2){
+        text-align: right;
+        padding-right: 13px;
+    }
+    .admin-table td:nth-child(1){
+        padding-left: 13px;
+    }
+    @media  print {
+        .hidden-print,
+        .hidden-print * {
+            display: none !important;
+        }
+
+        @page  { margin: 0; }
+        header { display: none !important; }
+        footer { display: none !important; }
+    }
+</style>
+<script type="text/javascript">
+    window.print();
+    /*const $btnPrint = document.querySelector("#btnPrint");
+    $btnPrint.addEventListener("click", () => {
+        window.print();
+    });*/
+
+</script>
+</body>
+</html>
